@@ -1,0 +1,46 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+  "name": "devcontainer-team-b",
+  "dockerComposeFile": "compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/ruby:1": {
+      "version": "3.4.2"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20.18.3"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "pkief.material-icon-theme",
+        "Shopify.ruby-lsp",
+        "atipugin.rails-partial",
+        "aki77.rails-routes",
+        "aki77.rails-db-schema",
+        "Blinknlights.fuzzy-ruby-server",
+        "kaiwood.endwise",
+        "castwide.solargraph",
+        "qwtel.sqlite-viewer",
+        "alexcvzz.vscode-sqlite",
+        "mhutchie.git-graph",
+        "rvest.vs-code-prettier-eslint"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "uname -a",
+  // Configure tool-specific properties.
+  // "customizations": {},
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+}
