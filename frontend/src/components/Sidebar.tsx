@@ -4,7 +4,7 @@ export const Sidebar = () => {
   return (
     <div
       className="d-flex flex-column flex-shrink-0 p-3"
-      style={{ width: "250px", height: "100vh", backgroundColor: "#4b9b6a" }}
+      style={{ width: "250px", height: "100vh", backgroundColor: "#249474" }}
     >
       <h3 className="text-center mb-3 text-white">
         <Link href="/" className="text-white text-decoration-none">
