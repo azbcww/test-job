@@ -25,7 +25,10 @@
 - 表紙画像と ISBN に対応 📖  
 
 ✅ **データの可視化**  
-- 進捗をグラフで確認できる 📊  
+- 進捗をグラフで確認できる 📊
+- こんなグラフ出せたらいいね
+
+  ![image](https://github.com/user-attachments/assets/b1bf2bf0-34bf-4156-860e-4500aef0e907)
 
 ---
 
