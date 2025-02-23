@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_23_120850) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_23_123311) do
   create_table "book_categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "category_id", null: false
@@ -61,7 +61,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_23_120850) do
   create_table "user_books", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "book_id", null: false
-    t.integer "current_pages"
+    t.integer "current_pages", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_user_books_on_book_id"
