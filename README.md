@@ -15,6 +15,9 @@
 - 技術分野ごとに EXP を獲得し、成長を実感  
 - 例: 「ネットワークはなぜつながるのか」を読んだら `ネットワーク` の EXP が増加
 - 経験値は 1 EXP/Page
+- こんなグラフ出せたらいいね
+
+  ![image](https://github.com/user-attachments/assets/b1bf2bf0-34bf-4156-860e-4500aef0e907)
 
 ✅ **ゲーミフィケーション要素**  
 - **GitHub Contribution 風の読書ログ** 📅  
@@ -26,9 +29,6 @@
 
 ✅ **データの可視化**  
 - 進捗をグラフで確認できる 📊
-- こんなグラフ出せたらいいね
-
-  ![image](https://github.com/user-attachments/assets/b1bf2bf0-34bf-4156-860e-4500aef0e907)
 
 ---
 
