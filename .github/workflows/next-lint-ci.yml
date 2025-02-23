@@ -16,5 +16,7 @@ jobs:
       # Run scripts
       - name: Install dependencies
         run: yarn install
+        working-directory: ./frontend
       - name: lint
         run: yarn lint
+        working-directory: ./frontend
