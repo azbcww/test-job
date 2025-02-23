@@ -1,0 +1,51 @@
+name: rails Build and CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  setup_and_test_execution:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ROOT_HOST: '%'
+        ports:
+          - 3306:3306
+        options: --health-cmd "mysqladmin ping -h 127.0.0.1" --health-interval 20s --health-timeout 10s --health-retries 10
+
+    # GitHub Actionsでサポートしているruby versionは2.6以降
+    steps:
+    - name: Checkout from Repository
+      uses: actions/checkout@v2
+    
+    - name: Setup Ruby version
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 3.1.x
+          
+    - name: bundle install
+      run: |
+        cd rails-api
+        bundle install --jobs 4 --retry 3
+    
+    - name: Setup Database
+      env:
+        RAILS_ENV: test
+      run: |
+        cd rails-api
+        cp config/database.yml.ci config/database.yml
+        #./bin/railsは権限エラーになる
+        #./bin/rails db:create
+        #./bin/rails db:migrate
+        bundle exec rake db:create
+        bundle exec rake db:migrate
+          
+    # 単体テスト
+    - name: Run RSpec
+      run: bundle exec rspec
+      env:
+        RAILS_ENV: test
