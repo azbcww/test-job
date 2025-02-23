@@ -1,0 +1,22 @@
+name: Textlintfornext
+on: pull_request
+jobs:
+  textlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # setup Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "yarn"
+          cache-dependency-path: "**/yarn.lock"
+
+      # Run scripts
+      - name: Install dependencies
+        run: yarn install
+        working-directory: ./frontend
+      - name: lint
+        run: yarn lint
+        working-directory: ./frontend

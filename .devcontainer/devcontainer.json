@@ -23,11 +23,16 @@
         "qwtel.sqlite-viewer",
         "alexcvzz.vscode-sqlite",
         "mhutchie.git-graph",
-        "rvest.vs-code-prettier-eslint"
+        "rvest.vs-code-prettier-eslint",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
       ],
       "settings": {
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
         "[ruby]": {
           "editor.defaultFormatter": "rebornix.ruby"
         }
