@@ -54,5 +54,5 @@ exp_logs  -- 獲得経験値の記録
   - created_at   (DATETIME, NOT NULL, DEFAULT CURRENT_TIMESTAMP)
   - updated_at   (DATETIME, NOT NULL, DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)
 
-https://mermaid.live/ で作成
+https://mermaid.live/ で mermaid.txt を読み込ませ作成
 ![ER図](mermaid-diagram-2025-02-23-195825.png)
