@@ -1,5 +1,11 @@
 import Link from "next/link";
 
+// TODO: <Link>のhrefの中身を修正
+// リンクは /[user-name]/add_book みたいな形でuser名を挟む必要がある
+
+// TODO: アイコンを作成
+// サイドバーの左下にユーザーアイコンを埋め込む。
+
 export const Sidebar = () => {
   return (
     <div
@@ -14,7 +20,7 @@ export const Sidebar = () => {
       <ul className="nav nav-pills flex-column mb-auto">
         <li className="nav-item">
           <Link
-            href="/add-book"
+            href="/add_book"
             className="nav-link text-white d-flex align-items-center"
           >
             <span className="material-symbols-outlined fs-5 me-2">book</span>
