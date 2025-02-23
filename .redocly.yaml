@@ -1,0 +1,4 @@
+apiDefinitions:
+  back-ex: OpenAPI/back/external-api.yaml
+  back-in: OpenAPI/back/internal-api.yaml
+  front-ex: OpenAPI/front/external-api.yaml

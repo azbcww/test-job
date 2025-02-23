@@ -1,0 +1,17 @@
+openapi: 3.0.0
+info:
+  title: Backend External API
+  version: 1.0.0
+  description: 外部向けのAPI定義
+servers:
+  - url: https://api.example.com
+    description: 外部向けAPIサーバ
+paths:
+  /public/data:
+    get:
+      summary: 公開データ取得
+      responses:
+        '200':
+          description: 成功
+        '404':
+          $ref: 'components.yaml#/components/responses/NotFound'
