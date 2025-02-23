@@ -1,0 +1,73 @@
+erDiagram
+    USERS {
+        BIGINT id PK "AUTO_INCREMENT"
+        VARCHAR(255) name "NOT NULL"
+        VARCHAR(255) email "UNIQUE, NOT NULL"
+        VARCHAR(255) password_digest "NOT NULL"
+        DATETIME created_at "NOT NULL, DEFAULT CURRENT_TIMESTAMP"
+        DATETIME updated_at "NOT NULL, DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+    }
+
+    CATEGORIES {
+        BIGINT id PK "AUTO_INCREMENT"
+        VARCHAR(255) category "UNIQUE, NOT NULL"
+        DATETIME created_at "NOT NULL, DEFAULT CURRENT_TIMESTAMP"
+        DATETIME updated_at "NOT NULL, DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+    }
+
+    BOOKS {
+        BIGINT id PK "AUTO_INCREMENT"
+        VARCHAR(255) title "NOT NULL"
+        VARCHAR(255) author "NOT NULL"
+        VARCHAR(255) image_id "NULL"
+        INT total_pages "NOT NULL, CHECK (total_pages > 0)"
+        DATETIME created_at "NOT NULL, DEFAULT CURRENT_TIMESTAMP"
+        DATETIME updated_at "NOT NULL, DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+    }
+
+    BOOK_CATEGORIES {
+        BIGINT id PK "AUTO_INCREMENT"
+        BIGINT book_id "NOT NULL, FK → books(id)"
+        BIGINT category_id "NOT NULL, FK → categories(id)"
+        DATETIME created_at "NOT NULL, DEFAULT CURRENT_TIMESTAMP"
+        DATETIME updated_at "NOT NULL, DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+    }
+
+    USER_BOOKS {
+        BIGINT user_id "NOT NULL, FK → users(id)"
+        BIGINT book_id "NOT NULL, FK → books(id)"
+        INT current_pages "NOT NULL, DEFAULT 0, CHECK (current_pages >= 0)"
+        DATETIME created_at "NOT NULL, DEFAULT CURRENT_TIMESTAMP"
+        DATETIME updated_at "NOT NULL, DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+    }
+
+    READING_LOGS {
+        BIGINT id PK "AUTO_INCREMENT"
+        BIGINT user_id "NOT NULL, FK → users(id)"
+        BIGINT book_id "NOT NULL, FK → books(id)"
+        DATE read_at "NOT NULL"
+        INT pages_read "NOT NULL, CHECK (pages_read > 0)"
+        DATETIME created_at "NOT NULL, DEFAULT CURRENT_TIMESTAMP"
+        DATETIME updated_at "NOT NULL, DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+    }
+
+    EXP_LOGS {
+        BIGINT id PK "AUTO_INCREMENT"
+        BIGINT user_id "NOT NULL, FK → users(id)"
+        BIGINT category_id "NOT NULL, FK → categories(id)"
+        INT exp_points "NOT NULL, CHECK (exp_points >= 0)"
+        DATE earned_at "NOT NULL"
+        DATETIME created_at "NOT NULL, DEFAULT CURRENT_TIMESTAMP"
+        DATETIME updated_at "NOT NULL, DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+    }
+
+    USERS ||--o{ USER_BOOKS : ""
+    USERS ||--o{ READING_LOGS : ""
+    USERS ||--o{ EXP_LOGS : ""
+    
+    CATEGORIES ||--o{ BOOK_CATEGORIES : ""
+    BOOKS ||--o{ BOOK_CATEGORIES : ""
+    BOOKS ||--o{ USER_BOOKS : ""
+    BOOKS ||--o{ READING_LOGS : ""
+
+    CATEGORIES ||--o{ EXP_LOGS : ""
