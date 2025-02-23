@@ -17,7 +17,7 @@ export default function UserHome({ params }: { params: { user_name: string } }) 
   return (
     <div className="container mt-5">
       <h2>{user_name} のホーム</h2>
-      <p>積読を減らして、経験値を貯めよう！📚✨</p>
+      <p>積読を減らして、経験値を貯めよう！！📚✨</p>
     </div>
   );
 }
