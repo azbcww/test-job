@@ -2,6 +2,7 @@ import Link from "next/link";
 
 // TODO: <Link>のhrefの中身を修正
 // リンクは /[user-name]/add_book みたいな形でuser名を挟む必要がある
+// 'hoge'のところをPropsで受け取った値に変更する
 
 // TODO: アイコンを作成
 // サイドバーの左下にユーザーアイコンを埋め込む。
@@ -13,14 +14,14 @@ export const Sidebar = () => {
       style={{ width: "250px", height: "100vh", backgroundColor: "#249474" }}
     >
       <h3 className="text-center mb-3 text-white">
-        <Link href="/" className="text-white text-decoration-none">
+        <Link href="/hoge" className="text-white text-decoration-none">
           読書王
         </Link>
       </h3>
       <ul className="nav nav-pills flex-column mb-auto">
         <li className="nav-item">
           <Link
-            href="/add_book"
+            href="/hoge/add_book"
             className="nav-link text-white d-flex align-items-center"
           >
             <span className="material-symbols-outlined fs-5 me-2">book</span>
@@ -29,7 +30,7 @@ export const Sidebar = () => {
         </li>
         <li>
           <Link
-            href="/books"
+            href="/hoge/books"
             className="nav-link text-white d-flex align-items-center"
           >
             <span className="material-symbols-outlined fs-5 me-2">
@@ -40,7 +41,7 @@ export const Sidebar = () => {
         </li>
         <li>
           <Link
-            href="/reading-log"
+            href="/hoge/reading-log"
             className="nav-link text-white d-flex align-items-center"
           >
             <span className="material-symbols-outlined fs-5 me-2">
@@ -51,7 +52,7 @@ export const Sidebar = () => {
         </li>
         <li>
           <Link
-            href="/level"
+            href="/hoge/level"
             className="nav-link text-white d-flex align-items-center"
           >
             <span className="material-symbols-outlined fs-5 me-2">
