@@ -62,3 +62,12 @@
 ✅ ゲーム感覚で学習を続けたい！  
 
 📢 **さぁ、技術書を積まずに読もう！**
+
+## **起動方法**
+```bash
+/rails-api $ bundle
+/rails-api $ rails s -p 3001
+
+/frontend $ yarn
+/frontend $ yarn run dev
+```
