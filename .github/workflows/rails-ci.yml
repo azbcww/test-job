@@ -46,6 +46,8 @@ jobs:
           
     # 単体テスト
     - name: Run RSpec
-      run: bundle exec rspec
+      run: |
+        cd rails-api
+        bundle exec rspec
       env:
         RAILS_ENV: test
