@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema[8.0].define(version: 2025_02_23_123311) do
   create_table "book_categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "book_id", null: false
@@ -70,25 +69,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_23_123311) do
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-  end
-
-  add_foreign_key "book_categories", "books"
-  add_foreign_key "book_categories", "categories"
-  add_foreign_key "exp_logs", "categories"
-  add_foreign_key "exp_logs", "users"
-  add_foreign_key "reading_logs", "books"
-  add_foreign_key "reading_logs", "users"
-  add_foreign_key "user_books", "books"
-  add_foreign_key "user_books", "users"
-=======
-ActiveRecord::Schema[8.0].define(version: 2025_02_23_080605) do
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -112,5 +92,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_23_080605) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
->>>>>>> main
+
+  add_foreign_key "book_categories", "books"
+  add_foreign_key "book_categories", "categories"
+  add_foreign_key "exp_logs", "categories"
+  add_foreign_key "exp_logs", "users"
+  add_foreign_key "reading_logs", "books"
+  add_foreign_key "reading_logs", "users"
+  add_foreign_key "user_books", "books"
+  add_foreign_key "user_books", "users"
 end
