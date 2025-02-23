@@ -2139,6 +2139,11 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
+react-contribution-calendar@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/react-contribution-calendar/-/react-contribution-calendar-2.0.4.tgz#681a3b65220dac923af19974b31865900ef037b4"
+  integrity sha512-OxVrhWJYPhsN4aTU82WTOWAgcrwEsQDy4EVR3dn2VM5OD+jGqbY4JEu9Ze4SBh5HtM5Si0wa1PvbSw5cf6ENAQ==
+
 react-dom@^19.0.0:
   version "19.0.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-19.0.0.tgz#43446f1f01c65a4cd7f7588083e686a6726cfb57"
