@@ -1,27 +1,27 @@
-'use client';
-import { useEffect, useState } from 'react';
+"use client";
 
-import api from './api/axios';
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const [message, setMessage] = useState('');
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get('/api/v1/hello');
-        setMessage(response.data.message);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+    const storedUser = localStorage.getItem("user");
 
-    fetchData();
-  }, []);
+    if (storedUser) {
+      // ユーザーがログイン済みなら `/{user_name}` にリダイレクト
+      router.push(`/${storedUser}`);
+    } else {
+      // 未ログインなら `/login` にリダイレクト
+      router.push("/login");
+    }
 
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Message from Rails API: {message}</h1>
-    </main>
-  );
+    setLoading(false);
+  }, [router]);
+
+  if (loading) return <div className="container mt-5">Loading...</div>;
+
+  return null; // 画面には何も表示しない（リダイレクトのみ）
 }
