@@ -12,5 +12,5 @@ RUN apt update && \
 RUN su vscode -c "gem install rails"
 RUN su vscode -c "/usr/local/rvm/bin/rvm fix-permissions"
 
-WORKDIR "/workspaces/rails-api"
+WORKDIR "/workspace/rails-api"
 RUN bundle config set --local path vendor/bundle
