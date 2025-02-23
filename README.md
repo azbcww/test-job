@@ -48,12 +48,12 @@
 | `POST`  | `/signup`       | ユーザー登録 |
 | `POST`  | `/login`        | ログイン（JWT 認証） |
 | `GET`   | `/books`        | 本の一覧取得 |
-| `POST`  | `/user/books`   | ユーザーが本を登録 |
-| `GET`   | `/user/books`   | ユーザーの登録した本の一覧取得 |
-| `POST`  | `/user/reading_logs`  | 読書ログの登録 |
-| `GET`   | `/user/reading_logs`  | ユーザーの読書履歴取得 |
-| `GET`   | `/user/exp_logs`   | 経験値ログ取得 |
-| `GET`   | `/user/progress`   | ユーザーの成長データ取得 |
+| `POST`  | `/users/books`   | ユーザーが本を登録 |
+| `GET`   | `/users/books`   | ユーザーの登録した本の一覧取得 |
+| `POST`  | `/users/reading_logs`  | 読書ログの登録 |
+| `GET`   | `/users/reading_logs`  | ユーザーの読書履歴取得 |
+| `GET`   | `/users/exp_logs`   | 経験値ログ取得 |
+| `GET`   | `/users/progress`   | ユーザーの成長データ取得 |
 ---
 
 ## **こんな人におすすめ！ 🎯**
