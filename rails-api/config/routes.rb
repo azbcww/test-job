@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       
       get 'hello', to: 'hello#index'
       get 'books', to: 'books#index'
-      get 'users', to: 'users#show'
+      get 'current_user', to: 'users#show'
 
       namespace :users do
         post 'books', to: 'books#create'
