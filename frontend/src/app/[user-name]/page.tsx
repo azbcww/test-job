@@ -6,6 +6,7 @@
 import { AchievementCard } from "@/components/AchievementCard";
 import { LevelCard } from "@/components/LevelCard";
 import { BookStackCard } from "@/components/BookStackCard";
+import { BooksListCard } from "@/components/BookListCard";
 
 import { ContributionCalendar } from "react-contribution-calendar";
 
@@ -91,6 +92,7 @@ export default function UserHome({ params }: { params: { user_name: string } }) 
         alreadyReadBooks={mockAlreadyReadBooks} 
         unreadBooks={mockUnreadBooks} 
       />
+      <BooksListCard />
     </div>
   );
 }
