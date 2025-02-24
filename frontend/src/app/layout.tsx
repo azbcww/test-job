@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap のスタイルを適用
-import { Sidebar } from "@/components/Sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,8 +40,7 @@ export default function RootLayout({
           vh-100
         `}
       >
-        <Sidebar />
-        <div className="flex-grow-1 overflow-auto h-100">{children}</div>
+        {children}
       </body>
     </html>
   );

@@ -7,6 +7,7 @@ RSpec.describe "API::V1::Registrations", type: :request do
     describe "成功時" do
       let(:request_params) { 
         { 
+          name: "a",
           email: "a@a.com", 
           password: "password", 
           password_confirmation: "password" 
@@ -44,6 +45,7 @@ RSpec.describe "API::V1::Registrations", type: :request do
     
     before do
       request_params = {
+        name: "a",
         email: "a@a.com",
         password: "password",
         password_confirmation: "password",
@@ -89,7 +91,7 @@ RSpec.describe "API::V1::Registrations", type: :request do
         }
       }
       it "signs out the user" do
-        res = register_and_sign_in("a@a.com", "password")
+        res = register_and_sign_in("a", "a@a.com", "password")
         sign_out_header["client"] = res["client"]
         sign_out_header["access-token"] = res["access-token"]
         sign_out_header["uid"] = res["uid"]
@@ -105,7 +107,7 @@ RSpec.describe "API::V1::Registrations", type: :request do
         }
       }
       it "signs out the user" do
-        register_and_sign_in("a@a.com", "password")
+        register_and_sign_in("a", "a@a.com", "password")
 
         subject
         expect(response).to have_http_status(404)
