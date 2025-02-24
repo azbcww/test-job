@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "API::V1::Auth::Registrations", type: :request do
+RSpec.describe "API::V1::Registrations", type: :request do
   describe "POST api/v1/auth" do
     subject {  post "api/v1/auth", headers: { 'Content-Type': 'application/json' }, params: request_params.to_json}
     
