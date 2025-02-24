@@ -1,6 +1,6 @@
-import { useBooks } from "@/hooks/useBooks";
+// import { useBooks } from "@/hooks/useBooks";
 import Image from "next/image";
-import { Spinner } from "react-bootstrap";
+// import { Spinner } from "react-bootstrap";
 
 export const BooksListCard = () => {
   // const { books, isLoading, isError } = useBooks();
