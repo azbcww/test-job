@@ -1,25 +1,25 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      mount_devise_token_auth_for 'User', at: 'auth'
-      
       get 'hello', to: 'hello#index'
-      get 'books', to: 'books#index'
       get 'current_user', to: 'users#show'
 
-      namespace :users do
-        post 'books', to: 'books#create'
-        get 'books', to: 'books#index'
-        
-        post 'reading_logs', to: 'reading_logs#create'
-        get 'reading_logs', to: 'reading_logs#index'
-        
-        get 'exp_logs', to: 'exp_logs#index'
-        
-        get 'progress', to: 'progress#show'
+      # 書籍関連
+      resources :books, only: [:index, :create]
+
+      # ユーザーに紐づくリソース
+      resources :users, only: [] do
+        resources :books, only: [:index, :create], module: :users
+        resources :reading_logs, only: [:index, :create], module: :users
+        resources :exp_logs, only: [:index], module: :users
+        resource :progress, only: [:show], module: :users
       end
+
+      # Devise Token Auth (ユーザー認証)
+      mount_devise_token_auth_for "User", at: "auth"
     end
   end
 
+  # ヘルスチェック用
   get "up" => "rails/health#show", as: :rails_health_check
 end
