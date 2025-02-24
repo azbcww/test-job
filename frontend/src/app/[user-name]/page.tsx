@@ -5,6 +5,7 @@
 
 import { AchievementCard } from "@/components/AchievementCard";
 import { LevelCard } from "@/components/LevelCard";
+import { BookStackCard } from "@/components/BookStack";
 
 import { ContributionCalendar } from "react-contribution-calendar";
 
@@ -33,6 +34,19 @@ export default function UserHome({ params }: { params: { user_name: string } }) 
       '2024-03-31': { level: 3 }
     },
   ]
+  const mockAlreadyReadBooks = [
+    { title: "JavaScriptの本", category: "Frontend", totalPage: 250 },
+    { title: "Reactの本", category: "Frontend", totalPage: 400 },
+    { title: "Node.jsの本", category: "Backend", totalPage: 350 },
+    { title: "データベースの本", category: "Database", totalPage: 500 },
+  ];
+  
+  const mockUnreadBooks = [
+    { title: "TypeScriptの本", category: "Frontend", totalPage: 230 },
+    { title: "Go言語の本", category: "Backend", totalPage: 532 },
+    { title: "Pythonの本", category: "Machine Learning", totalPage: 420 },
+    { title: "Dockerの本", category: "DevOps", totalPage: 193 },
+  ];
 
   // useEffect(() => {
   //   const storedUser = localStorage.getItem("user");
@@ -72,6 +86,10 @@ export default function UserHome({ params }: { params: { user_name: string } }) 
         //   hideDayLabels: false,
         // }}
         scroll={false}
+      />
+      <BookStackCard 
+        alreadyReadBooks={mockAlreadyReadBooks} 
+        unreadBooks={mockUnreadBooks} 
       />
     </div>
   );
