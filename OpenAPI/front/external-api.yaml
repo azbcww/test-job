@@ -11,7 +11,9 @@ paths:
     get:
       summary: 公開データ取得
       responses:
-        '200':
+        "200":
           description: 成功
-        '404':
-          $ref: 'components.yaml#/components/responses/NotFound'
+        "404":
+          $ref: "components.yaml#/components/responses/NotFound"
+  /google-books:
+    $ref: "./api/v1/google-books.yml#"
