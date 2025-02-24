@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signUp } from '@/utils/auth-utils';
-// import { useUserData } from '@/hooks/useUserData';
 
 export default function SignUpForm() {
   const [name, setName] = useState('');
@@ -12,7 +11,6 @@ export default function SignUpForm() {
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
-  // const { mutate } = useUserData();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

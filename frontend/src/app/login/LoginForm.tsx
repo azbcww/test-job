@@ -3,14 +3,12 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { login } from '@/utils/auth-utils';
-// import { useUserData } from '@/hooks/useUserData';
 
 export function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
-  // const { mutate } = useUserData();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,6 +17,7 @@ export function LoginForm() {
 
       // await mutate(); // 認証後にユーザーデータを再取得
       router.push('/dashboard');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setError('ログインに失敗しました');
     }
