@@ -4,6 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  author      :string(255)
+#  isbn        :string(255)
 #  title       :string(255)
 #  total_pages :integer
 #  created_at  :datetime         not null

@@ -5,7 +5,13 @@ module Api
         before_action :authenticate_api_v1_user!
 
         def create
-          book = Book.find(params[:book_id])
+          begin
+            book = Book.find_by(isbn: params[:isbn])
+          rescue ActiveRecord::RecordNotFound 
+            render json: { error: 'Book not found' }, status: :unprocessable_entity
+            return
+          end
+
           user_book = current_api_v1_user.user_books.create(book: book)
 
           if user_book.persisted?

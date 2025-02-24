@@ -1,0 +1,22 @@
+headers_auth_token:
+  client:
+    in: header
+    name: client
+    required: true
+    schema:
+      type: string
+    description: ログイン時のレスポンスに含まれている
+  access_token: 
+    in: header
+    name: access-token
+    required: true
+    schema:
+      type: string
+    description: ログイン時のレスポンスに含まれている
+  uid:
+    in: header
+    name: uid
+    required: true
+    schema:
+      type: string
+    description: ログイン時のレスポンスに含まれている
