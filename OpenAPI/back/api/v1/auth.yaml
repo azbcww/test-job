@@ -1,0 +1,79 @@
+user_registration:
+  post:
+    summary: ユーザー登録
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+                example: user@example.com
+              password:
+                type: string
+                format: password
+                example: password123
+              password_confirmation:
+                type: string
+                format: password
+                example: password123
+    responses:
+      '200':
+        description: Successful authentication
+      '422':
+        description: パラメーターが不正
+
+sign_in:
+  post:
+    summary: ログイン
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+                example: user@example.com
+              password:
+                type: string
+                format: password
+                example: password123
+    responses:
+      '200':
+        description: Successful login
+      '401':
+        description: Unauthorized
+
+sign_out:
+  delete:
+    summary: ログアウト
+    parameters:
+      - in: header
+        name: client
+        required: true
+        schema:
+          type: string
+        description: ログイン時に発行されるトークン
+      - in: header
+        name: access-token
+        required: true
+        schema:
+          type: string
+        description: ログイン時に発行されるトークン
+      - in: header
+        name: uid
+        required: true
+        schema:
+          type: string
+        description: ログイン時に発行されるトークン
+    responses:
+      '200':
+        description: Successful logout
+      '404':
+        description: 不正なヘッダ

@@ -1,0 +1,31 @@
+=> [32m#<ActionDispatch::TestResponse:0x00007fbf4e5a5c98[0m
+ @cache_control[32m=[0m{[33m:no_cache[0m=>[1;36mtrue[0m},
+ @committed[32m=[0m[1;36mfalse[0m,
+ @cv[32m=[0m
+  [32m#<MonitorMixin::ConditionVariable:0x00007fbf4e5b34b0[0m
+   @cond[32m=[0m[32m#<Thread::ConditionVariable:0x00007fbf4e5b3488[0m[32m>[0m,
+   @monitor[32m=[0m[32m#<Monitor:0x00007fbf4e5b3528[0m[32m>[0m[32m>[0m,
+ @headers[32m=[0m
+  {[31m[1;31m"[0m[31mx-frame-options[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mSAMEORIGIN[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mx-xss-protection[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31m0[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mx-content-type-options[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mnosniff[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mx-permitted-cross-domain-policies[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mreferrer-policy[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mstrict-origin-when-cross-origin[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mcontent-type[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mapplication/json; charset=utf-8[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mcache-control[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mno-cache[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mx-request-id[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31m688e06a4-fae8-46f7-b939-30813119fec8[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mx-runtime[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31m0.003048[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mvary[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mOrigin[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mcontent-length[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31m71[1;31m"[0m[31m[0m},
+ @mon_data[32m=[0m[32m#<Monitor:0x00007fbf4e5b3528[0m[32m>[0m,
+ @mon_data_owner_object_id[32m=[0m[1;34m28460[0m,
+ @request[32m=[0m[32m#<ActionDispatch::Request DELETE "http://localhost:3000//api/v1/auth/sign_out" for 127.0.0.1>[0m,
+ @sending[32m=[0m[1;36mfalse[0m,
+ @sent[32m=[0m[1;36mfalse[0m,
+ @status[32m=[0m[1;34m404[0m,
+ @stream[32m=[0m
+  [32m#<ActionDispatch::Response::Buffer:0x00007fbf4e59adc0[0m
+   @buf[32m=[0m[[31m[1;31m"[0m[31m{[1;35m\"[0m[31msuccess[1;35m\"[0m[31m:false,[1;35m\"[0m[31merrors[1;35m\"[0m[31m:[[1;35m\"[0m[31mUser was not found or was not logged in.[1;35m\"[0m[31m]}[1;31m"[0m[31m[0m],
+   @closed[32m=[0m[1;36mfalse[0m,
+   @response[32m=[0m[32m#<ActionDispatch::TestResponse:0x00007fbf4e5a5c98[0m ...[32m>[0m,
+   @str_body[32m=[0m[1;36mnil[0m[32m>[0m[32m>[0m
