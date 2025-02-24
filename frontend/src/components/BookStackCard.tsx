@@ -54,7 +54,7 @@ export const BookStackCard = ({ alreadyReadBooks, unreadBooks }: BookStackCardPr
   const offsets = showReadBooks ? readOffsets : unreadOffsets;
 
   return (
-    <div className="mt-3 card shadow-sm mx-auto" style={{ maxWidth: "360px" }}>
+    <div className="card shadow-sm w-100 h-100">
       <div className="card-body p-3 text-center">
         <div className="btn-group w-100 mb-3">
           <button
