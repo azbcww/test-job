@@ -1,5 +1,3 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 # == Schema Information
 #
 # Table name: books
@@ -12,14 +10,10 @@
 #  updated_at  :datetime         not null
 #  image_id    :string(255)
 #
-one:
-  title: MyString
-  author: MyString
-  image_id: MyString
-  total_pages: 1
-
-two:
-  title: MyString
-  author: MyString
-  image_id: MyString
-  total_pages: 1
+FactoryBot.define do
+  factory :book do
+    author { "Jane Doe" }
+    title { "Jane Doe" }
+    total_pages {10}
+  end
+end
