@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ["placehold.co"], // 外部画像のドメインを許可
+    domains: ["ndlsearch.ndl.go.jp", "books.google.com", "placehold.co"], // NDLの書影APIの画像表示のため, google books apiの(ry
   },
 };
 
