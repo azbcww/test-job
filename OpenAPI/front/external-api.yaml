@@ -11,72 +11,9 @@ paths:
     get:
       summary: 公開データ取得
       responses:
-        '200':
+        "200":
           description: 成功
-        '404':
-          $ref: 'components.yaml#/components/responses/NotFound'
-
-info:
-  title: Google Books API
-  version: 1.0.0
-  description: Google Books APIを利用して書籍情報を取得する
-servers:
-  - url: https://www.googleapis.com
-    description: Google Books APIサーバ
-paths:
-  /books/v1/volumes:
-    get:
-      summary: ISBN番号で書籍情報を取得
-      parameters:
-        - name: q
-          in: query
-          required: true
-          description: ISBN番号を指定します。例 "isbn:9784048930543"
-          schema:
-            type: string
-      responses:
-        '200':
-          description: 書籍情報が正常に取得された場合、または書籍が見つからなかった場合（totalItems: 0）
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  kind:
-                    type: string
-                    description: APIの種類
-                  totalItems:
-                    type: integer
-                    description: 見つかった書籍の数（0の場合は書籍が見つからなかったことを示す）
-                  items:
-                    type: array
-                    description: 書籍情報の配列
-                    items:
-                      type: object
-                      properties:
-                        volumeInfo:
-                          type: object
-                          properties:
-                            title:
-                              type: string
-                              description: 書籍のタイトル
-                            authors:
-                              type: array
-                              items:
-                                type: string
-                              description: 書籍の著者
-                            publisher:
-                              type: string
-                              description: 書籍の出版社
-                            publishedDate:
-                              type: string
-                              description: 書籍の発行日
-                            pageCount:
-                              type: integer
-                              description: 書籍のページ数
-                            imageLinks:
-                              type: object
-                              properties:
-                                thumbnail:
-                                  type: string
-                                  description: 書籍のサムネイル画像URL
+        "404":
+          $ref: "components.yaml#/components/responses/NotFound"
+  /google-books:
+    $ref: "./api/v1/google-books.yml#"
