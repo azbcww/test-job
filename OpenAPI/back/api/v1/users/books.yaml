@@ -1,0 +1,122 @@
+get_books:
+  get:
+    operationId: getUserBooks
+    summary: ユーザーが登録した書籍一覧を取得
+    description: 指定したユーザーが登録した書籍の一覧を取得する
+    parameters:
+      - name: user_id
+        in: path
+        required: true
+        description: 書籍を取得するユーザーの ID
+        schema:
+          type: integer
+    responses:
+      "200":
+        description: 書籍の一覧を返す
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  title:
+                    type: string
+                    example: "Eloquent Ruby"
+                  author:
+                    type: string
+                    example: "Russ Olsen"
+                  total_pages:
+                    type: integer
+                    example: 448
+                  isbn:
+                    type: string
+                    example: "9780321584106"
+      "404":
+        description: ユーザーが見つからない場合
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  example: "User not found"
+
+add_book:
+  post:
+    operationId: registerBookById
+    summary: 書籍をユーザーに登録
+    description: 指定した書籍 ID の書籍をユーザーに登録する
+    parameters:
+      - name: user_id
+        in: path
+        required: true
+        description: 書籍を登録するユーザーの ID
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - book_id
+            properties:
+              book_id:
+                type: integer
+                example: 3
+    responses:
+      "201":
+        description: 書籍が正常に登録された
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: "Book registered successfully"
+                book:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 3
+                    title:
+                      type: string
+                      example: "Eloquent Ruby"
+                    author:
+                      type: string
+                      example: "Russ Olsen"
+                    total_pages:
+                      type: integer
+                      example: 448
+                    isbn:
+                      type: string
+                      example: "9780321584106"
+      "404":
+        description: 書籍が見つからない場合
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  example: "Book not found with ID 999"
+
+      "422":
+        description: 書籍登録に失敗した場合
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  example: "Failed to register book"
