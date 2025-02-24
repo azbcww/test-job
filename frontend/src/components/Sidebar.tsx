@@ -11,7 +11,12 @@ export const Sidebar = () => {
   return (
     <div
       className="d-flex flex-column flex-shrink-0 p-3"
-      style={{ width: "250px", height: "100vh", backgroundColor: "#249474" }}
+      style={{
+        width: "250px",
+        minHeight: "100vh", // 最小高さを100vhにして要素が増えたら拡張
+        backgroundColor: "#249474",
+        overflowY: "auto", // 要素が増えたときにスクロール可能に
+      }}
     >
       <h3 className="text-center mb-3 text-white">
         <Link href="/hoge" className="text-white text-decoration-none">

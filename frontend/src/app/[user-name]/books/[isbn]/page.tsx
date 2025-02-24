@@ -16,23 +16,19 @@ interface BookData {
 }
 
 export default function BookDetail() {
-  const { isbn } = useParams(); // /[user-name]/books/[isbn] から isbnを取得
-  const [bookData, setBookData] = useState<BookData | null>(null); // 書籍情報の状態
-  const [loading, setLoading] = useState<boolean>(false); // ローディング状態
-  const [error, setError] = useState<string | null>(null); // エラーメッセージ
-
-  // TODO: DBに問い合わせをして、ISBNが存在しない場合は404ないし「登録されていない本です」などのエラーを出す
+  const { isbn } = useParams(); // /[user-name]/books/[isbn] から ISBN を取得
+  const [bookData, setBookData] = useState<BookData | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!isbn) return; // ISBNがまだ取得できていない場合はリクエストしない
+    if (!isbn) return; // ISBNが未取得なら処理しない
 
     const fetchBookDetails = async () => {
       setLoading(true);
-      setError(null); // エラー状態をリセット
+      setError(null);
 
       try {
-        // TODO: axiosとSWRを使って結果をキャッシュする
-        // https://github.com/WNomunomu/engineer-guild-hackathon-2025-march/issues/33
         const res = await fetch(
           `https://www.googleapis.com/books/v1/volumes?q=${isbn}+isbn`
         );
@@ -40,29 +36,35 @@ export default function BookDetail() {
 
         if (data.items) {
           const book = data.items[0].volumeInfo;
-          const cover = `https://ndlsearch.ndl.go.jp/thumbnail/${isbn}.jpg`;
-          const pages = book.pageCount || null; // ページ数
 
-          // 書籍情報を設定
+          // Google Books の画像URLを取得
+          const googleCover = book.imageLinks?.thumbnail;
+
+          // 画像URLをGoogle Books優先で取得
+          const cover =
+            googleCover || `https://ndlsearch.ndl.go.jp/thumbnail/${isbn}.jpg`;
+
+          const pages = book.pageCount?.toString() || null;
+
           const fetchedBookData = {
             summary: {
               title: book.title,
-              author: book.authors?.join(", ") || "不明", // 著者が複数いる場合を考慮
+              author: book.authors?.join(", ") || "不明",
               publisher: book.publisher || "不明",
               pubdate: book.publishedDate || "不明",
-              pages, // ページ数を追加
+              pages,
             },
-            cover, // カバー画像URLを設定
+            cover,
           };
           setBookData(fetchedBookData);
         } else {
           setError("書籍が見つかりませんでした。");
-          setBookData(null); // データが見つからなかった場合
+          setBookData(null);
         }
       } catch (err) {
         console.log(err);
         setError("APIのリクエストに失敗しました。");
-        setBookData(null); // エラーが発生した場合
+        setBookData(null);
       } finally {
         setLoading(false);
       }
@@ -77,14 +79,12 @@ export default function BookDetail() {
 
       {loading && <div className="text-center">読み込み中...</div>}
 
-      {/* エラーメッセージの表示 */}
       {error && (
         <div className="alert alert-danger mt-3" role="alert">
           {error}
         </div>
       )}
 
-      {/* 書籍情報が取得できた場合 */}
       {bookData && (
         <div className="card">
           <div className="card-body">
@@ -102,14 +102,14 @@ export default function BookDetail() {
               <strong>ページ数:</strong> {bookData.summary.pages || "不明"}
             </p>
 
-            {/* カバー画像をNext.jsのImageコンポーネントで表示 */}
             <div className="text-center">
               <Image
-                src={bookData.cover} // 画像URL
-                alt={`Cover of ${bookData.summary.title}`} // 代替テキスト
-                width={150} // 幅
-                height={225} // 高さ
-                className="img-fluid" // 画像をレスポンシブ対応
+                src={bookData.cover}
+                alt={`Cover of ${bookData.summary.title}`}
+                width={150}
+                height={225}
+                className="img-fluid"
+                unoptimized={true} // Google Books のURLをそのまま使う場合は必要
               />
             </div>
           </div>
