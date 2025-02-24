@@ -32,9 +32,17 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} d-flex`}>
+      <body 
+        className={`
+          ${geistSans.variable} 
+          ${geistMono.variable} 
+          d-flex 
+          overflow-hidden 
+          vh-100
+        `}
+      >
         <Sidebar />
-        <div className="flex-grow-1">{children}</div>
+        <div className="flex-grow-1 overflow-auto h-100">{children}</div>
       </body>
     </html>
   );
