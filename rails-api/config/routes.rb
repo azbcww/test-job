@@ -3,30 +3,22 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'hello', to: 'hello#index'
 
-      get 'books', to: 'books#index'
-      
-      namespace :users do
-        post 'books', to: 'books#create'
-        get 'books', to: 'books#index'
-        
-        post 'reading_logs', to: 'reading_logs#create'
-        get 'reading_logs', to: 'reading_logs#index'
-        
-        get 'exp_logs', to: 'exp_logs#index'
-        
-        get 'progress', to: 'progress#show'
+      # 書籍関連
+      resources :books, only: [:index, :create]
+
+      # ユーザーに紐づくリソース
+      resources :users, only: [] do
+        resources :books, only: [:index, :create], module: :users
+        resources :reading_logs, only: [:index, :create], module: :users
+        resources :exp_logs, only: [:index], module: :users
+        resource :progress, only: [:show], module: :users
       end
-      
+
+      # Devise Token Auth (ユーザー認証)
       mount_devise_token_auth_for "User", at: "auth"
     end
   end
-  
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # ヘルスチェック用
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end
