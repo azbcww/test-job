@@ -5,7 +5,7 @@
 
 import { AchievementCard } from "@/components/AchievementCard";
 import { LevelCard } from "@/components/LevelCard";
-import { BookStackCard } from "@/components/BookStack";
+import { BookStackCard } from "@/components/BookStackCard";
 
 import { ContributionCalendar } from "react-contribution-calendar";
 

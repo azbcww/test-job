@@ -44,11 +44,11 @@ export const BookStackCard = ({ alreadyReadBooks, unreadBooks }: BookStackCardPr
 
   useEffect(() => {
     setReadOffsets(alreadyReadBooks.map(() => Math.floor(Math.random() * 50) - 20));
-  }, [alreadyReadBooks.length]);
+  }, [alreadyReadBooks, alreadyReadBooks.length]);
 
   useEffect(() => {
     setUnreadOffsets(unreadBooks.map(() => Math.floor(Math.random() * 50) - 20));
-  }, [unreadBooks.length]);
+  }, [unreadBooks, unreadBooks.length]);
 
   const bookDataArray = showReadBooks ? alreadyReadBooks : unreadBooks;
   const offsets = showReadBooks ? readOffsets : unreadOffsets;
