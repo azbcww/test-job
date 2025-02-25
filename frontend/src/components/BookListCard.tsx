@@ -34,7 +34,7 @@ export const BooksListCard = () => {
       total_pages: 384,
     },
     {
-      id: 1,
+      id: 4,
       title: "ネットワークはなぜつながるのか",
       author: "戸根勤",
       image_url: "https://placehold.co/150x200", // 仮の画像
@@ -42,7 +42,7 @@ export const BooksListCard = () => {
       total_pages: 320,
     },
     {
-      id: 2,
+      id: 5,
       title: "リーダブルコード",
       author: "Dustin Boswell",
       image_url: "https://placehold.co/150x200",
@@ -50,7 +50,7 @@ export const BooksListCard = () => {
       total_pages: 256,
     },
     {
-      id: 3,
+      id: 6,
       title: "ゼロから作る Deep Learning",
       author: "斎藤康毅",
       image_url: "https://placehold.co/150x200",
@@ -67,7 +67,10 @@ export const BooksListCard = () => {
           <div key={book.id} className="col-md-2 mb-4">
             <div className="card">
               {book.image_url && (
-                <div className="position-relative" style={{ width: "100%", height: "200px" }}>
+                <div
+                  className="position-relative"
+                  style={{ width: "100%", height: "200px" }}
+                >
                   <Image
                     src={book.image_url}
                     alt={book.title}
@@ -91,4 +94,4 @@ export const BooksListCard = () => {
       </div>
     </div>
   );
-}
+};

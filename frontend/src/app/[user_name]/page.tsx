@@ -10,13 +10,11 @@ import { BooksListCard } from "@/components/BookListCard";
 
 import { ContributionCalenderCard } from "@/components/ContributionCalenderCard";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { useParams } from "next/navigation";
 
-export default function UserHome({ params }: { params: { user_name: string } }) {
-  
-  // const unwrappedParams = use(params);
-  // const user_name = unwrappedParams.user_name;
-  const user_name = params.user_name;
-  
+export default function UserHome() {
+  const { user_name } = useParams();
+
   const { user, isLoading } = useCurrentUser();
 
   const router = useRouter();
@@ -26,17 +24,16 @@ export default function UserHome({ params }: { params: { user_name: string } }) 
       router.push("/login");
     }
   }, [user_name, router, user, isLoading]);
-  
+
   // ローディング中はローディング表示を返す
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-
   console.log(user);
   console.log(user_name);
 
-  if (user == null) return <></>
+  if (user == null) return <></>;
 
   const levelData = [
     { category: "frontend", level: 7 },
@@ -55,7 +52,7 @@ export default function UserHome({ params }: { params: { user_name: string } }) 
     { title: "Node.jsの本", category: "Backend", totalPage: 350 },
     { title: "データベースの本", category: "Database", totalPage: 500 },
   ];
-  
+
   const mockUnreadBooks = [
     { title: "TypeScriptの本", category: "Frontend", totalPage: 230 },
     { title: "Go言語の本", category: "Backend", totalPage: 532 },
@@ -69,60 +66,36 @@ export default function UserHome({ params }: { params: { user_name: string } }) 
       <p>積読を減らして、経験値を貯めよう！！📚✨</p>
       <div className="d-flex row mb-3">
         <div className="pe-3 col-2">
-          <AchievementCard
-            icon='menu_book'
-            achievement="66"
-            category="book"
-          />
+          <AchievementCard icon="menu_book" achievement="66" category="book" />
         </div>
         <div className="px-3 col-2">
-          <AchievementCard
-            icon='menu_book'
-            achievement="66"
-            category="book"
-          />
+          <AchievementCard icon="menu_book" achievement="66" category="book" />
         </div>
         <div className="px-3 col-2">
-          <AchievementCard
-            icon='menu_book'
-            achievement="66"
-            category="book"
-          />
+          <AchievementCard icon="menu_book" achievement="66" category="book" />
         </div>
         <div className="px-3 col-2">
-          <AchievementCard
-            icon='menu_book'
-            achievement="66"
-            category="book"
-          />
+          <AchievementCard icon="menu_book" achievement="66" category="book" />
         </div>
         <div className="px-3 col-2">
-          <AchievementCard
-            icon='menu_book'
-            achievement="66"
-            category="book"
-          />
+          <AchievementCard icon="menu_book" achievement="66" category="book" />
         </div>
         <div className="px-s col-2">
-          <AchievementCard
-            icon='menu_book'
-            achievement="66"
-            category="book"
-          />
+          <AchievementCard icon="menu_book" achievement="66" category="book" />
         </div>
       </div>
       <div className="d-flex row mb-3">
         <div className="col-8">
           <LevelCard LevelInfoArray={levelData} />
         </div>
-        <div className="col-4">  
-          <BookStackCard 
-            alreadyReadBooks={mockAlreadyReadBooks} 
-            unreadBooks={mockUnreadBooks} 
+        <div className="col-4">
+          <BookStackCard
+            alreadyReadBooks={mockAlreadyReadBooks}
+            unreadBooks={mockUnreadBooks}
           />
         </div>
       </div>
-      <div>  
+      <div>
         <ContributionCalenderCard />
       </div>
       <BooksListCard />

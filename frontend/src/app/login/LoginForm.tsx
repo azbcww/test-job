@@ -13,8 +13,11 @@ export function LoginForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      // ログイン処理
       await login({ email, password });
       router.push("/dashboard");
+
+      // ログイン成功後にuseCurrentUserが更新される
     } catch (err) {
       console.log(err);
       setError("ログインに失敗しました");
