@@ -1,4 +1,6 @@
 get_progress:
+  tags:
+    - users
   summary: 進捗を取得
   description: ユーザの進捗を取得する
   parameters:
