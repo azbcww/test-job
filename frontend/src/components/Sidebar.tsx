@@ -1,72 +1,160 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-
-// TODO: <Link>のhrefの中身を修正
-// リンクは /[user-name]/add_book みたいな形でuser名を挟む必要がある
-// 'hoge'のところをPropsで受け取った値に変更する
-
-// TODO: アイコンを作成
-// サイドバーの左下にユーザーアイコンを埋め込む。
+import Image from "next/image";
+import { logout } from "@/utils/auth-utils";
+import { useRouter, useParams } from "next/navigation";
 
 export const Sidebar = () => {
+  const [showLogout, setShowLogout] = useState(false);
+
+  const router = useRouter();
+  const { user_name } = useParams();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      router.push("/"); // ログアウト成功時にリダイレクト
+    } catch (error) {
+      console.error("ログアウトに失敗しました", error);
+    }
+  };
+
   return (
     <div
-      className="d-flex flex-column flex-shrink-0 p-3"
+      className="d-flex flex-column flex-shrink-0 p-3 position-relative"
       style={{
         width: "250px",
-        minHeight: "100vh", // 最小高さを100vhにして要素が増えたら拡張
+        minHeight: "100vh",
         backgroundColor: "#249474",
-        overflowY: "auto", // 要素が増えたときにスクロール可能に
+        overflowY: "auto",
       }}
     >
       <h3 className="text-center mb-3 text-white">
-        <Link href="/hoge" className="text-white text-decoration-none">
+        <Link
+          href={user_name ? `/${user_name}` : "/"}
+          className="text-white text-decoration-none"
+        >
           読書王
         </Link>
       </h3>
       <ul className="nav nav-pills flex-column mb-auto">
-        <li className="nav-item">
-          <Link
-            href="/hoge/add_book"
-            className="nav-link text-white d-flex align-items-center"
-          >
-            <span className="material-symbols-outlined fs-5 me-2">book</span>
-            本を追加
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/hoge/books"
-            className="nav-link text-white d-flex align-items-center"
-          >
-            <span className="material-symbols-outlined fs-5 me-2">
-              menu_book
-            </span>
-            本を見る
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/hoge/reading-log"
-            className="nav-link text-white d-flex align-items-center"
-          >
-            <span className="material-symbols-outlined fs-5 me-2">
-              history_edu
-            </span>
-            読書ログを見る
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/hoge/level"
-            className="nav-link text-white d-flex align-items-center"
-          >
-            <span className="material-symbols-outlined fs-5 me-2">
-              military_tech
-            </span>
-            レベルを見る
-          </Link>
-        </li>
+        {user_name ? (
+          <>
+            <li className="nav-item">
+              <Link
+                href={`/${user_name}/add_book`}
+                className="nav-link text-white d-flex align-items-center"
+              >
+                <span className="material-symbols-outlined fs-5 me-2">
+                  book
+                </span>
+                本を追加
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={`/${user_name}/books`}
+                className="nav-link text-white d-flex align-items-center"
+              >
+                <span className="material-symbols-outlined fs-5 me-2">
+                  menu_book
+                </span>
+                本を見る
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={`/${user_name}/reading-log`}
+                className="nav-link text-white d-flex align-items-center"
+              >
+                <span className="material-symbols-outlined fs-5 me-2">
+                  history_edu
+                </span>
+                読書ログを見る
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={`/${user_name}/level`}
+                className="nav-link text-white d-flex align-items-center"
+              >
+                <span className="material-symbols-outlined fs-5 me-2">
+                  military_tech
+                </span>
+                レベルを見る
+              </Link>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <Link
+                href="/login"
+                className="nav-link text-white d-flex align-items-center"
+              >
+                <span className="material-symbols-outlined fs-5 me-2">
+                  login
+                </span>
+                ログイン
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/signup"
+                className="nav-link text-white d-flex align-items-center"
+              >
+                <span className="material-symbols-outlined fs-5 me-2">
+                  person_add
+                </span>
+                新規登録
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
+
+      {/* ユーザーアイコンとログアウトボタン（ログイン時のみ表示） */}
+      {user_name && (
+        <div
+          className="position-absolute d-flex align-items-center"
+          style={{
+            bottom: "10px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            cursor: "pointer",
+          }}
+          onClick={() => setShowLogout(!showLogout)}
+        >
+          <Image
+            src="/globe.svg"
+            alt="User Icon"
+            className="rounded-circle"
+            width={40}
+            height={40}
+          />
+        </div>
+      )}
+
+      {/* ログアウトボタン（ログイン時のみ表示） */}
+      {user_name && showLogout && (
+        <button
+          className="position-absolute btn btn-danger d-flex align-items-center justify-content-center"
+          style={{
+            bottom: "10px",
+            left: "calc(50% + 80px)",
+            transform: "translateX(-50%)",
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+            padding: "5px",
+          }}
+          onClick={handleLogout}
+        >
+          <span className="material-symbols-outlined text-white">logout</span>
+        </button>
+      )}
     </div>
   );
 };

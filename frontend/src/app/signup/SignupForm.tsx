@@ -1,15 +1,15 @@
-'use client'
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { signUp } from '@/utils/auth-utils';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { signUp } from "@/utils/auth-utils";
 
 export default function SignUpForm() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [error, setError] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -19,19 +19,24 @@ export default function SignUpForm() {
         name,
         email,
         password,
-        password_confirmation: passwordConfirmation
+        password_confirmation: passwordConfirmation,
       });
       // await mutate();
       router.push(`/${name}`);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'サインアップに失敗しました');
+      setError(
+        err instanceof Error ? err.message : "サインアップに失敗しました"
+      );
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="name"
+          className="block text-sm font-medium text-gray-700"
+        >
           Name
         </label>
         <input
@@ -45,7 +50,10 @@ export default function SignUpForm() {
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-gray-700"
+        >
           Email
         </label>
         <input
@@ -59,7 +67,10 @@ export default function SignUpForm() {
       </div>
 
       <div>
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="password"
+          className="block text-sm font-medium text-gray-700"
+        >
           Password
         </label>
         <input
@@ -73,7 +84,10 @@ export default function SignUpForm() {
       </div>
 
       <div>
-        <label htmlFor="passwordConfirmation" className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="passwordConfirmation"
+          className="block text-sm font-medium text-gray-700"
+        >
           Password Confirmation
         </label>
         <input

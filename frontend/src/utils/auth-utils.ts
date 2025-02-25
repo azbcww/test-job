@@ -27,9 +27,9 @@
 // };
 
 const setAuthCookie = (headers: Headers) => {
-  const authToken = headers.get('access-token');
-  const client = headers.get('client');
-  const uid = headers.get('uid');
+  const authToken = headers.get("access-token");
+  const client = headers.get("client");
+  const uid = headers.get("uid");
 
   document.cookie = `access-token=${authToken}; path=/; SameSite=Strict`;
   document.cookie = `client=${client}; path=/; SameSite=Strict`;
@@ -37,12 +37,12 @@ const setAuthCookie = (headers: Headers) => {
 };
 
 export const getAuthCookie = (name: string) => {
-  const cookies = document.cookie.split('; ');
+  const cookies = document.cookie.split("; ");
   for (const cookie of cookies) {
-    const [cookieName, cookieValue] = cookie.split('=');
+    const [cookieName, cookieValue] = cookie.split("=");
     if (cookieName === name) return cookieValue;
   }
-  return '';
+  return "";
 };
 
 const clearCookieValue = (name: string) => {
@@ -51,9 +51,9 @@ const clearCookieValue = (name: string) => {
 };
 
 const clearAuthCookies = () => {
-  clearCookieValue('access-token');
-  clearCookieValue('client');
-  clearCookieValue('uid');
+  clearCookieValue("access-token");
+  clearCookieValue("client");
+  clearCookieValue("uid");
 };
 
 interface LoginCredentials {
@@ -62,16 +62,16 @@ interface LoginCredentials {
 }
 
 export const login = async ({ email, password }: LoginCredentials) => {
-  const response = await fetch('http://localhost:3001/api/v1/auth/sign_in', {
-    method: 'POST',
+  const response = await fetch("http://localhost:3001/api/v1/auth/sign_in", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password })
+    body: JSON.stringify({ email, password }),
   });
 
   if (!response.ok) {
-    throw new Error('Login failed');
+    throw new Error("Login failed");
   }
 
   setAuthCookie(response.headers);
@@ -79,23 +79,22 @@ export const login = async ({ email, password }: LoginCredentials) => {
 };
 
 export const logout = async () => {
+  const access_token = getAuthCookie("access-token");
+  const client = getAuthCookie("client");
+  const uid = getAuthCookie("uid");
 
-  const access_token = getAuthCookie('access-token');
-  const client = getAuthCookie('client');
-  const uid = getAuthCookie('uid');
-
-  const response = await fetch('http://localhost:3001/api/v1/auth/sign_out', {
-    method: 'DELETE',
+  const response = await fetch("http://localhost:3001/api/v1/auth/sign_out", {
+    method: "DELETE",
     headers: {
-      'access-token': access_token,
-      'client': client,
-      'uid': uid,
-      'Content-Type': 'application/json',
-    }
+      "access-token": access_token,
+      client: client,
+      uid: uid,
+      "Content-Type": "application/json",
+    },
   });
 
   if (!response.ok) {
-    throw new Error('Logout failed');
+    throw new Error("Logout failed");
   }
 
   clearAuthCookies();
@@ -110,23 +109,23 @@ interface SignUpCredentials {
 }
 
 export const signUp = async (credentials: SignUpCredentials) => {
-  const response = await fetch('http://localhost:3001/api/v1/auth', {
-    method: 'POST',
+  const response = await fetch("http://localhost:3001/api/v1/auth", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      "Content-Type": "application/json",
+      Accept: "application/json",
     },
-    body: JSON.stringify({ 
+    body: JSON.stringify({
       email: credentials.email,
       password: credentials.password,
       password_confirmation: credentials.password_confirmation,
-      name: credentials.name
-    })
+      name: credentials.name,
+    }),
   });
 
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.errors?.full_messages?.[0] || 'Sign up failed');
+    throw new Error(error.errors?.full_messages?.[0] || "Sign up failed");
   }
 
   setAuthCookie(response.headers);
