@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'hello', to: 'hello#index'
+      get 'current_user', to: 'users#show'
 
       # 書籍関連
       resources :books, only: [:index, :create]

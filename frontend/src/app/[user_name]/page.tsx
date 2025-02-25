@@ -1,7 +1,7 @@
 "use client";
 
-// import { useEffect } from "react";
-// import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 import { AchievementCard } from "@/components/AchievementCard";
 import { LevelCard } from "@/components/LevelCard";
@@ -9,10 +9,34 @@ import { BookStackCard } from "@/components/BookStackCard";
 import { BooksListCard } from "@/components/BookListCard";
 
 import { ContributionCalenderCard } from "@/components/ContributionCalenderCard";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 
 export default function UserHome({ params }: { params: { user_name: string } }) {
-  // const router = useRouter();
+  
+  // const unwrappedParams = use(params);
+  // const user_name = unwrappedParams.user_name;
   const user_name = params.user_name;
+  
+  const { user, isLoading } = useCurrentUser();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && (!user || user.name !== user_name)) {
+      router.push("/login");
+    }
+  }, [user_name, router, user, isLoading]);
+  
+  // ローディング中はローディング表示を返す
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+
+  console.log(user);
+  console.log(user_name);
+
+  if (user == null) return <></>
 
   const levelData = [
     { category: "frontend", level: 7 },
@@ -39,16 +63,9 @@ export default function UserHome({ params }: { params: { user_name: string } }) 
     { title: "Dockerの本", category: "DevOps", totalPage: 193 },
   ];
 
-  // useEffect(() => {
-  //   const storedUser = localStorage.getItem("user");
-  //   if (!storedUser || storedUser !== user_name) {
-  //     router.push("/login");
-  //   }
-  // }, [user_name, router]);
-
   return (
     <div className="container mt-5">
-      <h2>{user_name} のホーム</h2>
+      <h2>{user.name} のホーム</h2>
       <p>積読を減らして、経験値を貯めよう！！📚✨</p>
       <div className="d-flex row mb-3">
         <div className="pe-3 col-2">

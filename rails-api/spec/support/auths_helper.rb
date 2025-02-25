@@ -1,6 +1,7 @@
 module AuthsHelper
-  def register_and_sign_in(email, password)
+  def register_and_sign_in(name, email, password)
     request_params = {
+        name: name,
         email: email,
         password: password,
         password_confirmation: password,
