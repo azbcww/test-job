@@ -15,7 +15,7 @@ FactoryBot.define do
   factory :book do
     author { "Jane Doe" }
     title { "Jane Doe" }
-    isbn { "aaaaa" }
+    isbn { "1111111111" }
     total_pages {10}
   end
 end

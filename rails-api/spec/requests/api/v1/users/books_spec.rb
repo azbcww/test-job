@@ -84,12 +84,14 @@ RSpec.describe "API::V1::Books", type: :request do
         headers["uid"] = res["uid"]
 
         create(:book)
-        post "api/v1/users/books", headers: headers, params: {:book_id => Book.first.id}
+        post "api/v1/users/books", headers: headers, params: {:isbn => Book.first.isbn}
       end
 
       it "returns a list of books" do
         subject
         expect(response).to have_http_status(:ok)
+
+        binding.pry
         expect(response.body).to eq(User.first.books.to_json)
       end
     end

@@ -1,85 +1,46 @@
 get_books:
-  get:
-    summary: 書籍一覧を取得
-    description: すべての書籍のリストを取得する。
-    responses:
-      "200":
-        description: 書籍の一覧を返す
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    example: 1
-                  title:
-                    type: string
-                    example: "Eloquent Ruby"
-                  author:
-                    type: string
-                    example: "Russ Olsen"
-                  total_pages:
-                    type: integer
-                    example: 448
-                  isbn:
-                    type: string
-                    example: "9780321584106"
-      "500":
-        description: サーバーエラー
-        content:
-          application/json:
-            schema:
+  summary: 書籍一覧を取得
+  description: すべての書籍のリストを取得する。
+  responses:
+    "200":
+      description: 書籍の一覧を返す
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
               type: object
               properties:
-                error:
-                  type: string
-                  example: "Internal Server Error"
-
-create_book:
-  post:
-    summary: 書籍を作成
-    description: 書籍のタイトル、著者、ページ数、ISBN を受け取り、新しい書籍を作成する。
-    requestBody:
-      required: true
+                $ref: 'components.yaml#/book_example'
+    "500":
+      description: サーバーエラー
       content:
         application/json:
           schema:
             type: object
             properties:
-              book:
-                type: object
-                required:
-                  - title
-                  - author
-                  - total_pages
-                  - isbn
-                properties:
-                  title:
-                    type: string
-                    example: "Eloquent Ruby"
-                  author:
-                    type: string
-                    example: "Russ Olsen"
-                  total_pages:
-                    type: integer
-                    example: 448
-                  isbn:
-                    type: string
-                    example: "9780321584106"
-    responses:
-      "201":
-        description: 書籍が正常に作成された
-        content:
-          application/json:
-            schema:
+              error:
+                type: string
+                example: "Internal Server Error"
+
+create_book:
+  summary: 書籍を作成
+  description: 書籍のタイトル、著者、ページ数、ISBN を受け取り、新しい書籍を作成する。
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            book:
               type: object
+              required:
+                - title
+                - author
+                - total_pages
+                - isbn
               properties:
-                id:
-                  type: integer
-                  example: 3
                 title:
                   type: string
                   example: "Eloquent Ruby"
@@ -92,17 +53,26 @@ create_book:
                 isbn:
                   type: string
                   example: "9780321584106"
-      "422":
-        description: バリデーションエラー
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                errors:
-                  type: array
-                  items:
-                    type: string
-                  example:
-                    - "Title can't be blank"
-                    - "Total pages must be greater than 0"
+  responses:
+    "201":
+      description: 書籍が正常に作成された
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              $ref: 'components.yaml#/book_example'
+    "422":
+      description: 不正なパラメーター
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: string
+                example:
+                  - "Title can't be blank"
+                  - "Total pages must be greater than 0"

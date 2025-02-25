@@ -7,11 +7,16 @@ Rails.application.routes.draw do
       resources :books, only: [:index, :create]
 
       # ユーザーに紐づくリソース
-      resources :users, only: [] do
-        resources :books, only: [:index, :create], module: :users
-        resources :reading_logs, only: [:index, :create], module: :users
-        resources :exp_logs, only: [:index], module: :users
-        resource :progress, only: [:show], module: :users
+      namespace :users do
+        post 'books', to: 'books#create'
+        get 'books', to: 'books#index'
+
+        post 'reading_logs', to: 'reading_logs#create'
+        get 'reading_logs', to: 'reading_logs#index'
+
+        get 'exp_logs', to: 'exp_logs#index'
+
+        get 'progress', to: 'progress#show'
       end
 
       # Devise Token Auth (ユーザー認証)
