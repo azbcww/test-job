@@ -1,0 +1,35 @@
+get_exp_log:
+  tags:
+    - users
+  summary: 経験値取得
+  description: 経験値の取得
+  parameters:
+    - $ref: '../components.yaml#/headers_auth_token/client'
+    - $ref: '../components.yaml#/headers_auth_token/access_token'
+    - $ref: '../components.yaml#/headers_auth_token/uid'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                user_id:
+                  type: integer
+                category_id:
+                  type: integer
+                exp_points:
+                  type: integer
+                created_at:
+                  type: string
+                  format: date-time
+                updated_at:
+                  type: string
+                  format: date-time
+    '401':
+      description: Unauthorized

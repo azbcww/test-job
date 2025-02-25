@@ -34,3 +34,6 @@ paths:
   /api/v1/users/progress:
     get:
       $ref: './api/v1/users/progress.yaml#/get_progress'
+  /api/v1/users/exp-log:
+    get:
+      $ref: './api/v1/users/exp-log.yaml#/get_exp_log'

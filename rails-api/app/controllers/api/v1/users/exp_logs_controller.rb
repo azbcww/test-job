@@ -2,17 +2,11 @@ module Api
   module V1
     module Users
       class ExpLogsController < ApplicationController
-        before_action :set_user
+        before_action :authenticate_api_v1_user!
 
         def index
-          logs = @user.exp_logs
+          logs = current_api_v1_user.exp_logs
           render json: logs
-        end
-
-        private
-
-        def set_user
-          @user = User.find(params[:user_id] || 1)
         end
       end
     end
