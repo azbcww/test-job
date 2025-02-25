@@ -9,7 +9,7 @@ RSpec.describe "API::V1::Books", type: :request do
 
     describe "成功時" do
       before do
-        res = register_and_sign_in("a@a.com", "password")
+        res = register_and_sign_in("a", "a@a.com", "password")
         headers["client"] = res["client"]
         headers["access-token"] = res["access-token"]
         headers["uid"] = res["uid"]
@@ -28,7 +28,7 @@ RSpec.describe "API::V1::Books", type: :request do
     describe "失敗時" do
       describe "認証できないとき" do
         before do
-          register_and_sign_in("a@a.com", "password")
+          register_and_sign_in("a", "a@a.com", "password")
           create(:book)
           params["book_id"] = Book.first.id
         end
@@ -42,7 +42,7 @@ RSpec.describe "API::V1::Books", type: :request do
 
       describe "パラメータが不正なとき" do
         before do
-          res = register_and_sign_in("a@a.com", "password")
+          res = register_and_sign_in("a", "a@a.com", "password")
           headers["client"] = res["client"]
           headers["access-token"] = res["access-token"]
           headers["uid"] = res["uid"]
@@ -66,7 +66,7 @@ RSpec.describe "API::V1::Books", type: :request do
 
     describe "認証できないとき" do
       before do
-        register_and_sign_in("a@a.com", "password")
+        register_and_sign_in("a", "a@a.com", "password")
       end
 
       it "登録が失敗し、正しいhttp status が返ってくる" do
@@ -78,7 +78,7 @@ RSpec.describe "API::V1::Books", type: :request do
 
     describe "成功時" do
       before do
-        res = register_and_sign_in("a@a.com", "password")
+        res = register_and_sign_in("a", "a@a.com", "password")
         headers["client"] = res["client"]
         headers["access-token"] = res["access-token"]
         headers["uid"] = res["uid"]
@@ -90,8 +90,6 @@ RSpec.describe "API::V1::Books", type: :request do
       it "returns a list of books" do
         subject
         expect(response).to have_http_status(:ok)
-
-        binding.pry
         expect(response.body).to eq(User.first.books.to_json)
       end
     end
