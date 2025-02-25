@@ -1,0 +1,23 @@
+get_progress:
+  summary: 進捗を取得
+  description: ユーザの進捗を取得する
+  parameters:
+    - $ref: '../components.yaml#/headers_auth_token/client'
+    - $ref: '../components.yaml#/headers_auth_token/access_token'
+    - $ref: '../components.yaml#/headers_auth_token/uid'
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              total_pages_read:
+                type: integer
+                example: 100
+              total_exp:
+                type: integer
+                example: 10
+    '401':
+      description: 認証失敗
