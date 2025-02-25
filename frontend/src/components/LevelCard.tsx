@@ -1,21 +1,21 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
-import styles from './LevelCard.module.scss'
+import { useEffect, useState } from "react";
+import styles from "./LevelCard.module.scss";
 
 export type LevelInfo = {
-  category: string,
-  level: number,
-}
+  category: string;
+  level: number;
+};
 
 type LevelCardProps = {
   LevelInfoArray: LevelInfo[];
-}
+};
 
 const LevelBar = (props: { level: number }) => {
   const { level } = props;
   const [progress, setProgress] = useState(0);
-  
+
   const maxLevel = 10;
   const progressPercentage = (level / maxLevel) * 100;
 
@@ -29,17 +29,14 @@ const LevelBar = (props: { level: number }) => {
 
   return (
     <div className={`flex-grow-1 ${styles.levelBarContainer}`}>
-      <div 
-        className={`progress ${styles.levelBar}`}
-        style={{ height: '15px' }}
-      >
+      <div className={`progress ${styles.levelBar}`} style={{ height: "15px" }}>
         <div
           className={`progress-bar ${styles.bar}`}
           role="progressbar"
-          style={{ 
+          style={{
             width: `${progress}%`,
-            transition: 'width 1500ms ease-in-out',
-            backgroundColor: '#249474'
+            transition: "width 1500ms ease-in-out",
+            backgroundColor: "#249474",
           }}
           aria-valuenow={progress}
           aria-valuemin={0}
@@ -57,17 +54,15 @@ export const LevelCard = (props: LevelCardProps) => {
     <div className="card shadow-sm">
       <div className="card-body p-3">
         {LevelInfoArray.map((levelInfo, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className={`d-flex align-items-center ${
-              index !== LevelInfoArray.length - 1 ? 'mb-3' : ''
+              index !== LevelInfoArray.length - 1 ? "mb-3" : ""
             }`}
           >
             <div className="col-3 px-2">{levelInfo.category}</div>
             <div className="col-2 px-2 text-center">
-              <span className="badge bg-secondary">
-                Lv.{levelInfo.level}
-              </span>
+              <span className="badge bg-secondary">Lv.{levelInfo.level}</span>
             </div>
             <div className="col-7 px-2">
               <LevelBar level={levelInfo.level} />
