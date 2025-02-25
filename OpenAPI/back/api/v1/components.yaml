@@ -1,0 +1,48 @@
+headers_auth_token:
+  client:
+    in: header
+    name: client
+    required: true
+    schema:
+      type: string
+    description: ログイン時のレスポンスに含まれている
+  access_token: 
+    in: header
+    name: access-token
+    required: true
+    schema:
+      type: string
+    description: ログイン時のレスポンスに含まれている
+  uid:
+    in: header
+    name: uid
+    required: true
+    schema:
+      type: string
+    description: ログイン時のレスポンスに含まれている
+
+book_example:
+  id:
+    type: integer
+    example: 3
+  title:
+    type: string
+    example: "Eloquent Ruby"
+  author:
+    type: string
+    example: "Russ Olsen"
+  image_id:
+    type: string
+    example: idk
+  total_pages:
+    type: integer
+    example: 448
+  created_at:
+    type: string
+    example: "2021-01-01T00:00:00.000Z"
+  updated_at:
+    type: string
+    example: "2021-01-01T00:00:00.000Z"
+  isbn:
+    type: string
+    example: "9780321584106"

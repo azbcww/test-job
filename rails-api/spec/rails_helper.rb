@@ -74,4 +74,6 @@ RSpec.configure do |config|
   end
 
   config.include AuthsHelper
+
+  config.include FactoryBot::Syntax::Methods # 最下段に追記
 end

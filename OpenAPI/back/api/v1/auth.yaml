@@ -54,24 +54,9 @@ sign_out:
   delete:
     summary: ログアウト
     parameters:
-      - in: header
-        name: client
-        required: true
-        schema:
-          type: string
-        description: ログイン時に発行されるトークン
-      - in: header
-        name: access-token
-        required: true
-        schema:
-          type: string
-        description: ログイン時に発行されるトークン
-      - in: header
-        name: uid
-        required: true
-        schema:
-          type: string
-        description: ログイン時に発行されるトークン
+      - $ref: 'components.yaml#/headers_auth_token/client'
+      - $ref: 'components.yaml#/headers_auth_token/access_token'
+      - $ref: 'components.yaml#/headers_auth_token/uid'
     responses:
       '200':
         description: Successful logout

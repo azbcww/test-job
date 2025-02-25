@@ -53,3 +53,5 @@ gem "devise_token_auth"
 gem 'rspec-rails' # 追加
 gem 'factory_bot_rails' # 追加
 gem 'pry-rails'
+
+gem "annotaterb"

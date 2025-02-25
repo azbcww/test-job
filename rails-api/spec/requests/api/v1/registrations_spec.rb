@@ -86,26 +86,22 @@ RSpec.describe "API::V1::Registrations", type: :request do
     subject {delete "api/v1/auth/sign_out", headers: sign_out_header}
 
     describe "成功時" do
-      let(:sign_out_header) {
-        {
-        }
-      }
-      it "signs out the user" do
+      let(:sign_out_header) {{}}
+      before "signs out the user" do
         res = register_and_sign_in("a", "a@a.com", "password")
         sign_out_header["client"] = res["client"]
         sign_out_header["access-token"] = res["access-token"]
         sign_out_header["uid"] = res["uid"]
-
+      end
+      
+      it "signs out the user" do
         subject
         expect(response).to have_http_status(200)
       end
     end
 
     describe "ヘッダが正しくないとき" do
-      let(:sign_out_header) {
-        {
-        }
-      }
+      let(:sign_out_header) {{}}
       it "signs out the user" do
         register_and_sign_in("a", "a@a.com", "password")
 
