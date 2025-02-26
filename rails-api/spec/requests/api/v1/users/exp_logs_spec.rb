@@ -15,7 +15,6 @@ RSpec.describe "Api::V1::User::ExpLogs", type: :request do
       it "進捗が取得できること" do
         get "api/v1/users/exp_logs", headers: header
         expect(response).to have_http_status(200)
-        binding.pry
         expect(response.body).to eq(User.find_by(email: "a@a.com").exp_logs.to_json)
       end
     end
