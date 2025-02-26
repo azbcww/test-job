@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        ref: stable
+        ref: main
 
     # - name: Check for changes in rails directory
     #   id: check_changes
