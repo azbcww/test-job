@@ -1,0 +1,14 @@
+FROM ruby:3.3.6
+
+WORKDIR /usr/src/rails
+
+COPY ./Gemfile ./Gemfile.lock ./
+
+RUN bundle install
+
+COPY . .
+
+RUN rails db:migrate
+RUN rails db:seed
+
+CMD ["rails", "s", "-b", "0.0.0.0"]
