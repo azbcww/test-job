@@ -37,3 +37,8 @@ paths:
   /api/v1/users/exp-log:
     get:
       $ref: './api/v1/users/exp-log.yaml#/get_exp_log'
+  /api/v1/users/reading-log:
+    get:
+      $ref: './api/v1/users/reading-log.yaml#/get_reading_log'
+    post:
+      $ref: './api/v1/users/reading-log.yaml#/register_reading_log'

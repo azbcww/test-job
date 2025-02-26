@@ -1,0 +1,95 @@
+get_reading_log:
+  summary: 読書履歴を取得する
+  tags:
+    - ReadingLog
+  parameters:
+    - $ref: '../components.yaml#/headers_auth_token/client'
+    - $ref: '../components.yaml#/headers_auth_token/access_token'
+    - $ref: '../components.yaml#/headers_auth_token/uid'
+  responses:
+    '200':
+      description: A list of reading log entries
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/ReadingLogEntry'
+    '401':
+      description: Unauthorized
+
+register_reading_log:
+  summary: 読書履歴を登録する
+  tags:
+    - ReadingLog
+  parameters:
+    - $ref: '../components.yaml#/headers_auth_token/client'
+    - $ref: '../components.yaml#/headers_auth_token/access_token'
+    - $ref: '../components.yaml#/headers_auth_token/uid'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            isbn:
+              type: integer
+              description: isbn of the book
+            read_at:
+              type: string
+              format: date
+              description: Date when the book was read
+            pages_read:
+              type: integer
+              description: Non-negative number of pages read
+          required:
+            - book_id
+            - read_at
+            - pages_read
+  responses:
+    '201':
+      description: Reading log entry created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Reading log saved
+              log:
+                type: object
+                $ref: '#/ReadingLogEntry'
+    '401':
+      description: Unauthorized
+    '422':
+      description: パラメーター不正 or isbn から本が見つからない
+
+ReadingLogEntry:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: Unique identifier for the reading log entry
+    user_id:
+      type: integer
+      description: ID of the user
+    book_id:
+      type: integer
+      description: ID of the book
+    read_at:
+      type: string
+      format: date
+      description: Date when the book was read
+    pages_read:
+      type: integer
+      description: Number of pages read
+    created_at:
+      type: string
+      format: date-time
+      description: Timestamp when the reading log entry was created
+    updated_at:
+      type: string
+      format: date-time
+      description: Timestamp when the reading log entry was last updated
