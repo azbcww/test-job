@@ -10,5 +10,4 @@ RUN bundle install
 
 COPY . .
 
-# CMD ["bash", "-c", "bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0"]
-CMD ["sleep", "infinity"]
+CMD ["bash", "-c", "bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0"]
